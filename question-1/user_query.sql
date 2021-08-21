@@ -1,0 +1,1 @@
+SELECT u.id, u.username, p.username FROM users u LEFT JOIN users p ON u.parent = p.parent ORDER BY u.id;
