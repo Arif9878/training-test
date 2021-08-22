@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"net/http"
 
-	"github.com/Arif9878/stockbit-test/question-2/imdbapi"
+	"github.com/Arif9878/stockbit-test/question-2/omdbapi"
 	middleware "github.com/Arif9878/stockbit-test/question-2/transport/http/middleware"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
@@ -19,8 +19,8 @@ const (
 )
 
 // RegisterHandlers registers handlers for specified path
-func RegisterHandlers(r chi.Router, grpc *grpc.Server, db *sql.DB, imdbapi *imdbapi.OmdbApi) {
-	r.Mount("/imdb", RegisterHTTPHandlers(NewImdbHTTP(grpc, db, imdbapi)))
+func RegisterHandlers(r chi.Router, grpc *grpc.Server, db *sql.DB, omdbapi *omdbapi.OmdbApi) {
+	r.Mount("/imdb", RegisterHTTPHandlers(NewImdbHTTP(grpc, db, omdbapi)))
 }
 
 // RegisterHTTPHandlers registers http handlers for work unit endpoint

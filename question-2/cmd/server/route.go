@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Arif9878/stockbit-test/question-2/imdbapi"
+	"github.com/Arif9878/stockbit-test/question-2/omdbapi"
 	httpApi "github.com/Arif9878/stockbit-test/question-2/transport/http"
 	"github.com/go-chi/chi"
 	"golang.org/x/net/http2"
@@ -16,13 +16,13 @@ import (
 )
 
 // Routing setup api routing
-func Routing(db *sql.DB, imdbapi *imdbapi.OmdbApi) chi.Router {
+func Routing(db *sql.DB, omdbapi *omdbapi.OmdbApi) chi.Router {
 	grpcServ := grpc.NewServer()
 	r := chi.NewRouter()
 
 	// register api path group
 	r.Route("/", func(r chi.Router) {
-		httpApi.RegisterHandlers(r, grpcServ, db, imdbapi)
+		httpApi.RegisterHandlers(r, grpcServ, db, omdbapi)
 	})
 
 	// Handler Http and Grpc

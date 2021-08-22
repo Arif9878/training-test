@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"net/http"
 
-	"github.com/Arif9878/stockbit-test/question-2/imdbapi"
 	"github.com/Arif9878/stockbit-test/question-2/models"
+	"github.com/Arif9878/stockbit-test/question-2/omdbapi"
 	"github.com/Arif9878/stockbit-test/question-2/repository"
 	imdb_grpc "github.com/Arif9878/stockbit-test/question-2/transport/grpc"
 	middleware "github.com/Arif9878/stockbit-test/question-2/transport/http/middleware"
@@ -25,8 +25,8 @@ type apiHTTP struct {
 }
 
 // NewWorkUnitHTTP returns ne WorkUnitHTTP struct instance
-func NewImdbHTTP(grpc *grpc.Server, db *sql.DB, imdbapi *imdbapi.OmdbApi) HTTP {
-	repo := repository.NewAPIRepository(imdbapi)
+func NewImdbHTTP(grpc *grpc.Server, db *sql.DB, omdbapi *omdbapi.OmdbApi) HTTP {
+	repo := repository.NewAPIRepository(omdbapi)
 	log := repository.NewLogsRepository(db)
 	svc := usecases.NewImdbUsecase(&repo, log)
 	imdb_grpc.NewArticleServerGrpc(grpc, svc)

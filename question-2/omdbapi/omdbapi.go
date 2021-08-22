@@ -1,4 +1,4 @@
-package imdbapi
+package omdbapi
 
 import (
 	"encoding/json"
