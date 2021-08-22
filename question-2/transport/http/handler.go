@@ -2,12 +2,14 @@ package http
 
 import (
 	"context"
+	"database/sql"
 	"net/http"
 
 	"github.com/Arif9878/stockbit-test/question-2/imdbapi"
 	middleware "github.com/Arif9878/stockbit-test/question-2/transport/http/middleware"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
+	"google.golang.org/grpc"
 )
 
 type contextID string
@@ -17,8 +19,8 @@ const (
 )
 
 // RegisterHandlers registers handlers for specified path
-func RegisterHandlers(r chi.Router, imdbapi *imdbapi.OmdbApi) {
-	r.Mount("/imdb", RegisterHTTPHandlers(NewImdbHTTP(imdbapi)))
+func RegisterHandlers(r chi.Router, grpc *grpc.Server, db *sql.DB, imdbapi *imdbapi.OmdbApi) {
+	r.Mount("/imdb", RegisterHTTPHandlers(NewImdbHTTP(grpc, db, imdbapi)))
 }
 
 // RegisterHTTPHandlers registers http handlers for work unit endpoint

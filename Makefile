@@ -1,6 +1,6 @@
 
 generate-grpc:
-	@protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./question-2/transport/grpc/imdb.proto
+	@protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./question-2/transport/grpc/imdb_grpc/imdb.proto
 
 run-question-2:
 	go run ./question-2/cmd .
@@ -10,6 +10,9 @@ run-question-3:
 
 run-question-4:
 	go run ./question-4 .
+
+run-test-client-grpc:
+	go run ./test-client-grpc .
 
 test:
 	go test -coverprofile fmtcoverage.out ./...

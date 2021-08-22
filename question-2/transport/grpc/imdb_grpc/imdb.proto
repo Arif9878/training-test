@@ -1,0 +1,31 @@
+syntax="proto3";
+package imdb_grpc;
+option go_package = "github.com/Arif9878/stockbit-test/question-2/transport/grpc/imdb_grpc";
+
+
+service ImdbGrpcHandler {
+  rpc FetchList (FetchRequest) returns (SearchResponse);
+  rpc GetByID (SingleRequest) returns (MovieDetail);
+}
+
+message FetchRequest{
+  string search=1;
+  string page =2;
+}
+
+message SingleRequest{
+  string id=1;
+}
+
+message SearchResponse {
+  repeated MovieDetail ListResults=1;
+}
+
+message MovieDetail{
+  string Title=1;
+  string Year=2;
+  string ImdbID=3;
+  string Type=4;
+  string Poster=5;
+}
+

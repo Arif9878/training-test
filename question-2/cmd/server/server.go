@@ -10,11 +10,14 @@ import (
 	"github.com/pkg/errors"
 )
 
+const (
+	port = ":8080"
+)
+
 // Start to start the server
 func Start(r http.Handler) error {
 	serverErrors := make(chan error, 1)
 
-	port := ":8080"
 	server := http.Server{
 		Addr:    port,
 		Handler: r,

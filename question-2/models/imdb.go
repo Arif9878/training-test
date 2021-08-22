@@ -28,5 +28,5 @@ type SearchResponse struct {
 	Search       []ListResults
 	Response     string
 	Error        string
-	totalResults int
+	TotalResults string `json:"totalResults"`
 }

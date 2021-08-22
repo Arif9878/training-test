@@ -12,16 +12,16 @@ type ImdbRepository struct {
 	mock.Mock
 }
 
-// Fetch provides a mock function with given fields: query
-func (_m *ImdbRepository) Fetch(query *models.QueryParams) (*[]models.ListResults, error) {
+// FetchList provides a mock function with given fields: query
+func (_m *ImdbRepository) FetchList(query *models.QueryParams) (*models.SearchResponse, error) {
 	ret := _m.Called(query)
 
-	var r0 *[]models.ListResults
-	if rf, ok := ret.Get(0).(func(*models.QueryParams) *[]models.ListResults); ok {
+	var r0 *models.SearchResponse
+	if rf, ok := ret.Get(0).(func(*models.QueryParams) *models.SearchResponse); ok {
 		r0 = rf(query)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*[]models.ListResults)
+			r0 = ret.Get(0).(*models.SearchResponse)
 		}
 	}
 
