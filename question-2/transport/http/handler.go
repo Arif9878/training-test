@@ -20,7 +20,7 @@ const (
 
 // RegisterHandlers registers handlers for specified path
 func RegisterHandlers(r chi.Router, grpc *grpc.Server, db *sql.DB, omdbapi *omdbapi.OmdbApi) {
-	r.Mount("/imdb", RegisterHTTPHandlers(NewImdbHTTP(grpc, db, omdbapi)))
+	r.Mount("/omdb", RegisterHTTPHandlers(NewImdbHTTP(grpc, db, omdbapi)))
 }
 
 // RegisterHTTPHandlers registers http handlers for work unit endpoint

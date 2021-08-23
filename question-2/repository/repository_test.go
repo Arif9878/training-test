@@ -11,7 +11,7 @@ import (
 
 func Test_ErrorFetchList(t *testing.T) {
 	omdbapi := omdbapi.Init("2354534")
-	repo := repository.NewAPIRepository(omdbapi)
+	repo := repository.NewAPIRepository(omdbapi, nil)
 	var mockQuery models.QueryParams
 	list, err := repo.FetchList(&mockQuery)
 
@@ -22,7 +22,7 @@ func Test_ErrorFetchList(t *testing.T) {
 
 func Test_ErrorGetByID(t *testing.T) {
 	omdbapi := omdbapi.Init("2354534")
-	repo := repository.NewAPIRepository(omdbapi)
+	repo := repository.NewAPIRepository(omdbapi, nil)
 	detail, err := repo.GetByID("tt0372784")
 
 	assert.Nil(t, detail)

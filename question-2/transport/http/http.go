@@ -26,9 +26,9 @@ type apiHTTP struct {
 
 // NewWorkUnitHTTP returns ne WorkUnitHTTP struct instance
 func NewImdbHTTP(grpc *grpc.Server, db *sql.DB, omdbapi *omdbapi.OmdbApi) HTTP {
-	repo := repository.NewAPIRepository(omdbapi)
 	log := repository.NewLogsRepository(db)
-	svc := usecases.NewImdbUsecase(&repo, log)
+	repo := repository.NewAPIRepository(omdbapi, log)
+	svc := usecases.NewImdbUsecase(&repo)
 	imdb_grpc.NewArticleServerGrpc(grpc, svc)
 
 	return apiHTTP{svc: svc}

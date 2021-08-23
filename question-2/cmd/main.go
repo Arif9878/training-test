@@ -19,20 +19,17 @@ func Run() error {
 	ApiKey := helper.GetEnv("API_KEY_OMDB")
 	omdbapi := omdbapi.Init(ApiKey)
 
-	// dbHost := "localhost"
-	// dbPort := "3306"
-	// dbUser := "test"
-	// dbPass := "password"
-	// dbName := "test"
+	// dbHost := helper.GetEnv("DB_HOST")
+	// dbPort := helper.GetEnv("DB_PORT")
+	// dbUser := helper.GetEnv("DB_USER")
+	// dbPass := helper.GetEnv("DB_PASSWORD")
+	// dbName := helper.GetEnv("DB_NAME")
 	// connection := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPass, dbHost, dbPort, dbName)
 	// val := url.Values{}
 	// val.Add("parseTime", "1")
 	// val.Add("loc", "Asia/Jakarta")
 	// dsn := fmt.Sprintf("%s?%s", connection, val.Encode())
 	// db, err := sql.Open(`mysql`, dsn)
-	// if err != nil {
-	// fmt.Println(err)
-	// }
 	db, _, err := sqlmock.New()
 	if err != nil {
 		fmt.Printf("failed to connect to database: %s", err)

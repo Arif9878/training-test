@@ -13,10 +13,11 @@ type ImdbRepository interface {
 // A ImdbRepository belong to the inteface layer
 type imdbRepository struct {
 	omdbapi *omdbapi.OmdbApi
+	log     LogsRepository
 }
 
-func NewAPIRepository(omdbapi *omdbapi.OmdbApi) imdbRepository {
-	return imdbRepository{omdbapi}
+func NewAPIRepository(omdbapi *omdbapi.OmdbApi, log LogsRepository) imdbRepository {
+	return imdbRepository{omdbapi: omdbapi, log: log}
 }
 
 func (a *imdbRepository) FetchList(query *models.QueryParams) (*models.SearchResponse, error) {
@@ -24,6 +25,8 @@ func (a *imdbRepository) FetchList(query *models.QueryParams) (*models.SearchRes
 	if err != nil {
 		return nil, err
 	}
+
+	_ = a.log.StoreLogSearch(query)
 
 	return results, nil
 }

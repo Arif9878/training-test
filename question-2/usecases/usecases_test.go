@@ -16,7 +16,7 @@ func Test_FetchList(t *testing.T) {
 	var mockQuery models.QueryParams
 
 	mockRepo.On("FetchList", mockQuery).Return(&mockSearchResponse, nil)
-	u := usecases.NewImdbUsecase(mockRepo, nil)
+	u := usecases.NewImdbUsecase(mockRepo)
 
 	list, err := u.FetchList(&mockQuery)
 	mockQuery.Search = "Batman"
@@ -34,7 +34,7 @@ func Test_GetByID(t *testing.T) {
 
 	mockRepo.On("GetByID", mockMovie.ImdbID).Return(&mockMovie, nil)
 	defer mockRepo.AssertCalled(t, "GetByID", mockMovie.ImdbID)
-	u := usecases.NewImdbUsecase(mockRepo, nil)
+	u := usecases.NewImdbUsecase(mockRepo)
 
 	a, err := u.GetByID(mockMovie.ImdbID)
 
